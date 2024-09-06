@@ -21,8 +21,8 @@ collat_pkh=$(${cli} conway address key-hash --payment-verification-key-file ../w
 # Lets create a info to test
 drepHash=$(cat ../../hashes/drep.hash)
 ${cli} conway governance vote create \
-    --no \
-    --governance-action-tx-id 6907a4ac456e51ed77c260949167bf14b135ce5a3b30bc95db354a447f34012d \
+    --yes \
+    --governance-action-tx-id aff2909f8175ee02a8c1bf96ff516685d25bf0c6b95aac91f4dfd53a5c0867cc \
     --governance-action-index 0 \
     --drep-script-hash ${drepHash} \
     --out-file ../data/votes/first.vote

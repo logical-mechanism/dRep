@@ -1,5 +1,5 @@
 {
     "type": "CertificateConway",
     "description": "Vote Delegation Certificate",
-    "cborHex": "83098200581c40b3c98d3b5f5a7748829d612e9e1ccd5f429970abc9abfeae867af98201581cd853517a214ee1a8ce061358fd809be79ed15760468107627f80d045"
+    "cborHex": "83098200581c40b3c98d3b5f5a7748829d612e9e1ccd5f429970abc9abfeae867af98201581c763ef75661f0cd8c8fa159a79d79bfe8f9a76878bdaaff700598ee0e"
 }

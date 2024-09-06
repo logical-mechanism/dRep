@@ -16,10 +16,10 @@ rm -fr build/ || true
 echo -e "\033[1;34m Building Contracts \033[0m"
 
 # remove all traces
-# aiken build --trace-level silent --filter-traces user-defined
+aiken build --trace-level silent --filter-traces user-defined
 
 # keep the traces
-aiken build --trace-level verbose --filter-traces all
+# aiken build --trace-level verbose --filter-traces all
 
 hot_key=$(jq -r '.hotKey' config.json)
 hot_key_cbor=$(python3 -c "import cbor2;hex_string='${hot_key}';data = bytes.fromhex(hex_string);encoded = cbor2.dumps(data);print(encoded.hex())")
@@ -65,12 +65,6 @@ jq \
 --arg drepHash "$drepHash" \
 '.fields[0].bytes=$drepHash' \
 ./scripts/data/drep/update-redeemer.json | sponge ./scripts/data/drep/update-redeemer.json
-
-drepHash=$(cat ./hashes/drep.hash)
-jq \
---arg drepHash "$drepHash" \
-'.fields[1].bytes=$drepHash' \
-./scripts/data/drep/delegate-redeemer.json | sponge ./scripts/data/drep/delegate-redeemer.json
 
 # end of build
 echo -e "\033[1;32m Building Complete! \033[0m"
