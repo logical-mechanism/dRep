@@ -1,0 +1,15 @@
+[
+    [
+        {
+            "scriptHash": "763ef75661f0cd8c8fa159a79d79bfe8f9a76878bdaaff700598ee0e"
+        },
+        {
+            "anchor": {
+                "dataHash": "55c4ea20e133878ef8c80ddbf3f73adbe3220963a2874f8757d435d60126db41",
+                "url": "https://www.logicalmechanism.io/drepTestnet"
+            },
+            "deposit": 500000000,
+            "expiry": 185
+        }
+    ]
+]
