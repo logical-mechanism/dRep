@@ -1,16 +1,13 @@
-use aiken/collection/pairs
 use aiken/crypto.{VerificationKeyHash}
-use cardano/address.{Script, VerificationKey}
+use cardano/address.{Script}
 use cardano/certificate.{
   Certificate, RegisterDelegateRepresentative, UnregisterDelegateRepresentative,
   UpdateDelegateRepresentative,
 }
-use cardano/governance.{ProposalProcedure, Voter}
+use cardano/governance.{Voter}
 use cardano/transaction.{Transaction}
 use cardano/tx
-use drep_contract/types.{
-  CastVote, Propose, Redeemer, Register, UnRegister, Update,
-}
+use drep_contract/types.{CastVote, Redeemer, Register, UnRegister, Update}
 
 validator contract(controller: VerificationKeyHash) {
   publish(
@@ -35,7 +32,7 @@ validator contract(controller: VerificationKeyHash) {
           UpdateDelegateRepresentative {
             delegate_representative: Script(script_hash),
           }
-        _ -> fail @"Bad Drep Redeemer"
+        _ -> fail @"Bad dRep Redeemer"
       }
     and {
       // The only cert is for new delegation
@@ -45,32 +42,10 @@ validator contract(controller: VerificationKeyHash) {
     }
   }
 
-  vote(redeemer: Redeemer, voter: Voter, transaction: Transaction) {
-    let Transaction { extra_signatories, votes, .. } = transaction
-    expect CastVote(gov_id, my_vote) = redeemer
-    expect Some(gov_vote) = pairs.get_first(votes, voter)
-    expect Some(the_vote) = pairs.get_first(gov_vote, gov_id)
-    and {
-      // The vote must match my vote
-      (the_vote == my_vote)?,
-      // the controller must sign it
-      tx.verify_signature(extra_signatories, controller)?,
-    }
-  }
-
-  propose(
-    redeemer: Redeemer,
-    proposal_procedure: ProposalProcedure,
-    transaction: Transaction,
-  ) {
+  vote(redeemer: Redeemer, _voter: Voter, transaction: Transaction) {
     let Transaction { extra_signatories, .. } = transaction
-    expect Propose = redeemer
-    and {
-      // return address needs to the controller
-      proposal_procedure.return_address == VerificationKey(controller),
-      // the controller must sign it
-      tx.verify_signature(extra_signatories, controller)?,
-    }
+    expect CastVote = redeemer
+    tx.verify_signature(extra_signatories, controller)
   }
 
   else(_) {

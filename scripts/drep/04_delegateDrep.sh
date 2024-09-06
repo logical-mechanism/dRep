@@ -15,12 +15,6 @@ skh="../wallets/delegator-wallet/stake.vkey"
 base_address=$(${cli} conway address build --payment-verification-key-file ${pkh} --stake-verification-key-file ${skh} ${network})
 echo $base_address
 
-stakeHash=$(cat ../wallets/delegator-wallet/stake.hash)
-jq \
---arg stakeHash "$stakeHash" \
-'.fields[0].bytes=$stakeHash' \
-../data/drep/delegate-redeemer.json | sponge ../data/drep/delegate-redeemer.json
-
 drepHash=$(cat ../../hashes/drep.hash)
 ${cli} conway stake-address vote-delegation-certificate --stake-verification-key-file ${skh} --drep-script-hash ${drepHash} --out-file ../data/drep/delegate.cert
 
@@ -41,22 +35,6 @@ fi
 alltxin=""
 TXIN=$(jq -r --arg alltxin "" 'to_entries[] | select(.value.value | length < 2) | .key | . + $alltxin + " --tx-in"' ../tmp/base_utxo.json)
 base_tx_in=${TXIN::-8}
-
-# collat info
-echo -e "\033[0;36m Gathering Collateral UTxO Information  \033[0m"
-${cli} conway query utxo \
-    ${network} \
-    --address ${collat_address} \
-    --out-file ../tmp/collat_utxo.json
-
-TXNS=$(jq length ../tmp/collat_utxo.json)
-if [ "${TXNS}" -eq "0" ]; then
-   echo -e "\n \033[0;31m NO UTxOs Found At ${collat_address} \033[0m \n";
-   exit;
-fi
-collat_utxo=$(jq -r 'keys[0]' ../tmp/collat_utxo.json)
-
-script_ref_utxo=$(${cli} conway transaction txid --tx-file ../tmp/drep-reference-utxo.signed )
 
 echo -e "\033[0;36m Building Tx \033[0m"
 FEE=$(${cli} conway transaction build \

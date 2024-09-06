@@ -1,1 +1,1 @@
---testnet-magic 1
+--testnet-magic 4

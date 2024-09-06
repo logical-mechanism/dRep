@@ -14,9 +14,8 @@ skh="../wallets/delegator-wallet/stake.vkey"
 base_address=$(${cli} conway address build --payment-verification-key-file ${pkh} --stake-verification-key-file ${skh} ${network})
 echo $base_address
 
-poolId="1e3105f23f2ac91b3fb4c35fa4fe301421028e356e114944e902005b"
+poolId="02641404878b0b7efce28de535c67ddcf073606082d01a3eb01a82ab"
 ${cli} conway stake-address stake-delegation-certificate --stake-verification-key-file ${skh} --stake-pool-id ${poolId} --out-file ../data/staking/deleg.cert
-
 
 #
 # exit
