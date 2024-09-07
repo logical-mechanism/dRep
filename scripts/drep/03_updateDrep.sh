@@ -1,9 +1,36 @@
 #!/usr/bin/env bash
 set -e
-
 export CARDANO_NODE_SOCKET_PATH=$(cat ../data/path_to_socket.sh)
 cli=$(cat ../data/path_to_cli.sh)
 network=$(cat ../data/network.sh)
+
+drepHash=$(cat ../../hashes/drep.hash)
+
+# Ensure the script receives exactly three arguments
+if [ "$#" -ne 2 ]; then
+    echo "Usage: $0 <url> <hash>"
+    exit 1
+fi
+
+# Validate the first argument (string)
+if [[ ! "$1" =~ ^[a-zA-Z0-9:/.]+$ ]]; then
+    echo "Error: First argument must be a string."
+    exit 1
+fi
+
+if [[ ! "$2" =~ ^[a-zA-Z0-9]+$ ]]; then
+    echo "Error: First argument must be a string."
+    exit 1
+fi
+
+url="$1"
+hash="$2"
+
+${cli} conway governance drep update-certificate \
+--drep-script-hash ${drepHash} \
+--drep-metadata-url "${url}" \
+--drep-metadata-hash "${hash}" \
+--out-file ../../certs/update.cert
 
 mkdir -p ../tmp
 ${cli} conway query protocol-parameters ${network} --out-file ../tmp/protocol.json
@@ -66,8 +93,18 @@ FEE=$(${cli} conway transaction build \
 
 IFS=':' read -ra VALUE <<< "${FEE}"
 IFS=' ' read -ra FEE <<< "${VALUE[1]}"
-FEE=${FEE[1]}
 echo -e "\033[1;32m Fee: \033[0m" $FEE
+
+echo "Updating ${drepHash} with data from ${url} and hash: ${hash}"
+echo "Press Enter to continue, or any other key to exit."
+read -rsn1 input
+
+if [[ "$input" == "" ]]; then
+    echo "Updating..."
+else
+    echo "Exiting."
+    exit 0;
+fi
 #
 # exit
 #
