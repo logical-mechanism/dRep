@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
+## TESTING ONLY
+
 export CARDANO_NODE_SOCKET_PATH=$(cat ../data/path_to_socket.sh)
 cli=$(cat ../data/path_to_cli.sh)
 network=$(cat ../data/network.sh)
