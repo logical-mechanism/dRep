@@ -4,9 +4,63 @@ set -e
 export CARDANO_NODE_SOCKET_PATH=$(cat ../data/path_to_socket.sh)
 cli=$(cat ../data/path_to_cli.sh)
 network=$(cat ../data/network.sh)
+net_type=$(python3 -c "x = '${network}'; y = x.split('-magic'); print(y[0])")
+
+drepHash=$(cat ../../hashes/drep.hash)
+
+
+# Ensure the script receives exactly three arguments
+if [ "$#" -ne 3 ]; then
+    echo "Usage: $0 <txid> <index> <yes|no|abstain>"
+    exit 1
+fi
+
+# Validate the first argument (string)
+if [[ ! "$1" =~ ^[a-zA-Z0-9]+$ ]]; then
+    echo "Error: First argument must be a string."
+    exit 1
+fi
+
+# Validate the second argument (number)
+if ! [[ "$2" =~ ^[0-9]+$ ]]; then
+    echo "Error: Second argument must be a number."
+    exit 1
+fi
+
+# Validate the third argument (must be yes, no, or abstain)
+if [[ "$3" != "yes" && "$3" != "no" && "$3" != "abstain" ]]; then
+    echo "Error: Third argument must be 'yes', 'no', or 'abstain'."
+    exit 1
+fi
+
+# Set variables based on arguments
+txId="$1"
+txIdx="$2"
+voteOption="$3"
 
 # Read the drep hash from file
 drepHash=$(cat ../../hashes/drep.hash)
+
+# Set the vote flag based on the voteOption
+case "$voteOption" in
+    yes)
+        voteFlag="--yes"
+        ;;
+    no)
+        voteFlag="--no"
+        ;;
+    abstain)
+        voteFlag="--abstain"
+        ;;
+esac
+
+# Execute the CLI command with the provided arguments
+${cli} conway governance vote create \
+    $voteFlag \
+    --governance-action-tx-id "$txId" \
+    --governance-action-index "$txIdx" \
+    --drep-script-hash ${drepHash} \
+    --out-file ../data/votes/${txId}.vote
 
 mkdir -p ../tmp
 ${cli} conway query protocol-parameters ${network} --out-file ../tmp/protocol.json
@@ -19,16 +73,10 @@ hot_pkh=$(${cli} conway address key-hash --payment-verification-key-file ../wall
 collat_address=$(cat ../wallets/collat-wallet/payment.addr)
 collat_pkh=$(${cli} conway address key-hash --payment-verification-key-file ../wallets/collat-wallet/payment.vkey)
 
-drepAddressDeposit=$(cat ../tmp/protocol.json | jq -r '.dRepDeposit')
-jq -r \
---argjson drepAddressDeposit "$drepAddressDeposit" \
-'.fields[1].int=$drepAddressDeposit' \
-../data/drep/unregister-redeemer.json | sponge ../data/drep/unregister-redeemer.json
-
-echo drepAddressDeposit : $drepAddressDeposit
-#
+#   
 # exit
 #
+
 echo -e "\033[0;36m Gathering Payee UTxO Information  \033[0m"
 ${cli} conway query utxo \
     ${network} \
@@ -66,24 +114,25 @@ FEE=$(${cli} conway transaction build \
     --change-address ${hot_address} \
     --tx-in-collateral="${collat_utxo}" \
     --tx-in ${hot_tx_in} \
-    --certificate ../../certs/unregister.cert \
-    --certificate-tx-in-reference="${script_ref_utxo}#1" \
-    --certificate-plutus-script-v3 \
-    --certificate-reference-tx-in-redeemer-file ../data/drep/unregister-redeemer.json \
+    --vote-file ../data/votes/${txId}.vote \
+    --vote-tx-in-reference="${script_ref_utxo}#1" \
+    --vote-plutus-script-v3 \
+    --vote-reference-tx-in-redeemer-file ../data/drep/vote-redeemer.json \
     --required-signer-hash ${collat_pkh} \
     --required-signer-hash ${hot_pkh} \
     ${network})
 
 IFS=':' read -ra VALUE <<< "${FEE}"
 IFS=' ' read -ra FEE <<< "${VALUE[1]}"
+
 echo -e "\033[1;32m Fee: \033[0m" $FEE
 
-echo "UnRegistering ${drepHash}"
+echo "Voting ${3} on ${txId}#${txIdx}"
 echo "Press Enter to continue, or any other key to exit."
 read -rsn1 input
 
 if [[ "$input" == "" ]]; then
-    echo "UnRegistering..."
+    echo "Voting..."
 else
     echo "Exiting."
     exit 0;

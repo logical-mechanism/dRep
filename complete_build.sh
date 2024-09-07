@@ -39,14 +39,6 @@ cardano-cli conway governance drep retirement-certificate \
 --deposit-amt $(cat ./scripts/tmp/protocol.json | jq -r '.dRepDeposit') \
 --out-file certs/unregister.cert
 
-# this is broken for scripts right now
-# change 0 tag to 1 in cbor
-cardano-cli conway governance drep update-certificate \
---drep-key-hash $(cat hashes/drep.hash) \
---drep-metadata-url https://www.logicalmechanism.io/drepTestnet \
---drep-metadata-hash 55c4ea20e133878ef8c80ddbf3f73adbe3220963a2874f8757d435d60126db41 \
---out-file certs/update.cert
-
 echo -e "\033[1;33m Updating Drep Redeemer \033[0m"
 drepHash=$(cat ./hashes/drep.hash)
 jq \

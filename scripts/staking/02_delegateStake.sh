@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
+## TESTING ONLY
+
 export CARDANO_NODE_SOCKET_PATH=$(cat ../data/path_to_socket.sh)
 cli=$(cat ../data/path_to_cli.sh)
 network=$(cat ../data/network.sh)
@@ -48,7 +50,7 @@ FEE=$(${cli} conway transaction build \
 
 IFS=':' read -ra VALUE <<< "${FEE}"
 IFS=' ' read -ra FEE <<< "${VALUE[1]}"
-FEE=${FEE[1]}
+
 echo -e "\033[1;32m Fee: \033[0m" $FEE
 #
 # exit
