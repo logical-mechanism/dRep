@@ -68,10 +68,10 @@
   "hashAlgorithm": "blake2b-256",
   "body": {
     "title": "Logical Mechanism Smart Contract dRep",
-    "abstract": "This is the testnet smart contract DRep for Logical Mechanism LLC.",
+    "abstract": "This is the smart contract DRep for Logical Mechanism LLC.",
     "motivations": "We are a technical consulting company specializing in open-sourced decentralized applications for the everyday user. We know Cardano inwards and out.",
-    "rationale": "We have extensive knowledge and experience building on Cardano. We could make great choices for Cardano's future.",
-    "paymentAddress": "addr_test1qrvnxkaylr4upwxfxctpxpcumj0fl6fdujdc72j8sgpraa9l4gu9er4t0w7udjvt2pqngddn6q4h8h3uv38p8p9cq82qav4lmp",
+    "rationale": "We have extensive knowledge and experience building on Cardano. We will make great choices for Cardano's future.",
+    "paymentAddress": "addr1q8rdcfvj5a27gmp04q5c4nuly385mseam09y777xa8mjn40ax0z9yaxg2mjj3ctg4uj6ggwsc6nja0kj446w2gv5zcvqjk47zh",
     "givenName": "Logical Mechanism dRep",
     "image": {
       "@type": "ImageObject",
@@ -92,7 +92,7 @@
         "uri": "https://github.com/logical-mechanism"
       }
     ],
-    "comment": "Our dRep script can update, vote, and propose."
+    "comment": "Our dRep script can register, unregister, update, and vote."
   },
   "authors": []
 }
