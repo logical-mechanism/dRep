@@ -33,4 +33,13 @@ Run `00_createScriptReferences.sh` to create the script reference UTxO for the s
 
 The dRep can now be delegated by other users.
 
+
+### Metadata
+
 A drep can have metadata associated with it and is suggested that it does.
+
+- TODO
+
+### Voting
+
+- TODO
