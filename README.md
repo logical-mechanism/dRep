@@ -6,13 +6,14 @@ The goal of this contract is a basic dRep. It can register, unregister, update, 
 
 ## Setup
 
-The contract requires Aiken 1.1.0, stdlib 2.0.0, and cardano-cli 9.4.0.0+ (older version did not allow script dReps to update). The build and happy path scripts require jq, sponge, and python3. The path to the cardano-cli needs to be defined in `scripts/data/path_to_cli.sh`, the path to the cardano-node socket needs to be defined in `scripts/data/path_to_socket.sh`, and the network needs to be defined in `scripts/data/network.sh`. A fully-synced cardano-node is required for the happy path.
+The contract requires Aiken 1.1.0, stdlib 2.0.0, and cardano-cli 9.4.0.0+ (older version did not allow script dReps to update). The build and happy path scripts require jq, sponge, and python3. Python3 requires cbor2, install with `pip install cbor2`. The path to the cardano-cli needs to be defined in `scripts/data/path_to_cli.sh`, the path to the cardano-node socket needs to be defined in `scripts/data/path_to_socket.sh`, and the network needs to be defined in `scripts/data/network.sh`. A fully-synced cardano-node is required for the happy path.
 
 ### Wallet Generation
 
 Start by creating the required wallets for the happy path in the `scripts` folder.
 
 ```bash
+mkdir wallets
 ./create_wallet.sh wallets/collat-wallet
 ./create_wallet.sh wallets/hot-wallet
 ./create_wallet.sh wallets/reference-wallet
