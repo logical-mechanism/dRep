@@ -25,12 +25,13 @@ fi
 
 url="$1"
 hash="$2"
+#--drep-key-hash ${drepHash} \
 
-${cli} conway governance drep update-certificate \
---drep-script-hash ${drepHash} \
---drep-metadata-url "${url}" \
---drep-metadata-hash "${hash}" \
---out-file ../../certs/update.cert
+#${cli} conway governance drep update-certificate \
+#--drep-script-hash ${drepHash} \
+#--drep-metadata-url "${url}" \
+#--drep-metadata-hash "${hash}" \
+#--out-file ../../certs/update.cert
 
 mkdir -p ../tmp
 ${cli} conway query protocol-parameters ${network} --out-file ../tmp/protocol.json
