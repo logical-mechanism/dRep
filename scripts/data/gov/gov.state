@@ -1,13 +1,13 @@
 {
     "committee": {
         "members": {
-            "scriptHash-2f4a6c6f098e20ee4bfd5b39942c164575f8ceb348e754df5d0ec04f": 229,
-            "scriptHash-5098dfd0deba725fadd692198fc33ee959fbe7e6edf1b5a695e06e61": 229,
-            "scriptHash-5a71f17f4ce4c1c0be053575d717ade6ad8a1d5453d02a65ce40d4b1": 229,
-            "scriptHash-6095e643ea6f1cccb6e463ec34349026b3a48621aac5d512655ab1bf": 229,
-            "scriptHash-94c0de47e7ae32e3f7234ada5cf976506b68e3bb88c54dc53b4ba984": 229,
-            "scriptHash-94f51c795a6c11adb9c1e30f0b6def4230cbd0b8bc800098e2d2307b": 229,
-            "scriptHash-a6a5e006fd4e8f51062dc431362369b2a43140abced8aa2ff2256d7b": 229
+            "scriptHash-349e55f83e9af24813e6cb368df6a80d38951b2a334dfcdf26815558": 580,
+            "scriptHash-84aebcfd3e00d0f87af918fc4b5e00135f407e379893df7e7d392c6a": 580,
+            "scriptHash-b6012034ba0a7e4afbbf2c7a1432f8824aee5299a48e38e41a952686": 580,
+            "scriptHash-ce8b37a72b178a37bbd3236daa7b2c158c9d3604e7aa667e6c6004b7": 580,
+            "scriptHash-df0e83bde65416dade5b1f97e7f115cc1ff999550ad968850783fe50": 580,
+            "scriptHash-e8165b3328027ee0d74b1f07298cb092fd99aa7697a1436f5997f625": 580,
+            "scriptHash-f0dc2c00d92a45521267be2d5de1c485f6f9d14466d7e16062897cf7": 580
         },
         "threshold": {
             "denominator": 3,
@@ -683,7 +683,8 @@
         "utxoCostPerByte": 4310
     },
     "futurePParams": {
-        "tag": "NoPParamsUpdate"
+        "contents": null,
+        "tag": "PotentialPParamsUpdate"
     },
     "nextRatifyState": {
         "enactedGovActions": [],
@@ -691,13 +692,13 @@
         "nextEnactState": {
             "committee": {
                 "members": {
-                    "scriptHash-2f4a6c6f098e20ee4bfd5b39942c164575f8ceb348e754df5d0ec04f": 229,
-                    "scriptHash-5098dfd0deba725fadd692198fc33ee959fbe7e6edf1b5a695e06e61": 229,
-                    "scriptHash-5a71f17f4ce4c1c0be053575d717ade6ad8a1d5453d02a65ce40d4b1": 229,
-                    "scriptHash-6095e643ea6f1cccb6e463ec34349026b3a48621aac5d512655ab1bf": 229,
-                    "scriptHash-94c0de47e7ae32e3f7234ada5cf976506b68e3bb88c54dc53b4ba984": 229,
-                    "scriptHash-94f51c795a6c11adb9c1e30f0b6def4230cbd0b8bc800098e2d2307b": 229,
-                    "scriptHash-a6a5e006fd4e8f51062dc431362369b2a43140abced8aa2ff2256d7b": 229
+                    "scriptHash-349e55f83e9af24813e6cb368df6a80d38951b2a334dfcdf26815558": 580,
+                    "scriptHash-84aebcfd3e00d0f87af918fc4b5e00135f407e379893df7e7d392c6a": 580,
+                    "scriptHash-b6012034ba0a7e4afbbf2c7a1432f8824aee5299a48e38e41a952686": 580,
+                    "scriptHash-ce8b37a72b178a37bbd3236daa7b2c158c9d3604e7aa667e6c6004b7": 580,
+                    "scriptHash-df0e83bde65416dade5b1f97e7f115cc1ff999550ad968850783fe50": 580,
+                    "scriptHash-e8165b3328027ee0d74b1f07298cb092fd99aa7697a1436f5997f625": 580,
+                    "scriptHash-f0dc2c00d92a45521267be2d5de1c485f6f9d14466d7e16062897cf7": 580
                 },
                 "threshold": {
                     "denominator": 3,
@@ -2707,51 +2708,59 @@
         {
             "actionId": {
                 "govActionIx": 0,
-                "txId": "0ecc74fe26532cec1ab9a299f082afc436afc888ca2dc0fc6acda431c52dc60d"
-            },
-            "committeeVotes": {},
-            "dRepVotes": {},
-            "expiresAfter": 169,
-            "proposalProcedure": {
-                "anchor": {
-                    "dataHash": "311b148ca792007a3b1fee75a8698165911e306c3bc2afef6cf0145ecc7d03d4",
-                    "url": "https://raw.githubusercontent.com/cardano-foundation/CIPs/master/CIP-0108/examples/treasury-withdrawal.jsonld"
-                },
-                "deposit": 100000000000,
-                "govAction": {
-                    "contents": [
-                        null,
-                        {
-                            "stakeAddressDeposit": 1234567
-                        },
-                        "fa24fb305126805cf2164c161d852a0e7330cf988f1fe558cf7d4a64"
-                    ],
-                    "tag": "ParameterChange"
-                },
-                "returnAddr": {
-                    "credential": {
-                        "keyHash": "521da955ad8f24bdff8d3cb8f5a155c49870037019fcdf20949e7e5e"
-                    },
-                    "network": "Testnet"
-                }
-            },
-            "proposedIn": 163,
-            "stakePoolVotes": {}
-        },
-        {
-            "actionId": {
-                "govActionIx": 0,
-                "txId": "aff2909f8175ee02a8c1bf96ff516685d25bf0c6b95aac91f4dfd53a5c0867cc"
+                "txId": "15f82a365bdee483a4b03873a40d3829cc88c048ff3703e11bd01dd9e035c916"
             },
             "committeeVotes": {},
             "dRepVotes": {
-                "scriptHash-763ef75661f0cd8c8fa159a79d79bfe8f9a76878bdaaff700598ee0e": "VoteYes"
+                "keyHash-1228f8146e5d57f738b8ce9d0a7a0329d8f6c413923b8fc34e9828b0": "VoteNo",
+                "keyHash-16c9b910e620b6661b82aec2b307bba2b26682b8beddc043301aa19a": "Abstain",
+                "keyHash-1f5ed39f09ace870ae22691a6dab5305021b0c0703b872aae6389cce": "VoteNo",
+                "keyHash-228fabcdd2b1a034554a7a42dadc591d6540ce542ec0d7a734a197b1": "VoteNo",
+                "keyHash-24f57fece7213b86ecbfcc9f355835e148add29b9dfa757113aeba9b": "VoteYes",
+                "keyHash-2c962b9eef4434dc08bbc1080fbb9375d63ca385e39935e369698df2": "VoteNo",
+                "keyHash-31ed01cd2c83527725903283e4e535d0a0a600bab2188b06c59e5e0b": "VoteNo",
+                "keyHash-3244dcf3dbe2d9fe9d55ccd5b1e50f3dcbe425fbf0143c411e9f2012": "Abstain",
+                "keyHash-3d06718f522e592814f564c7ebf534c4e20751ca53f90b2a383252c7": "VoteNo",
+                "keyHash-3e34d73f3a117e6d512a5086247de2a96553da255acc0b541ab9691e": "VoteNo",
+                "keyHash-4281249b0696b2e347ae7cc1757d38e81fd5c7aa763903225b40e7c1": "VoteYes",
+                "keyHash-55215f98aa7d9e289d215a55f62d258c6c3a71ab847b76de9ddbe661": "Abstain",
+                "keyHash-57838a1e44b12af4b33083f155c8d61cec93afb1827eb66ea159020c": "Abstain",
+                "keyHash-59d018364aebf5ddff693741df1679a47cd33ce8f26eae3be8d68d14": "VoteNo",
+                "keyHash-6c50e19fbaa47dd7a226a15d46313b2b088045b1fe2169f4015d7d08": "VoteNo",
+                "keyHash-6c8a0c80777f9e4dc043dabc48e8391c7821a5b42c850be268cf1a51": "VoteNo",
+                "keyHash-7149d835b03c3f2afdfc724640b7643a3f138762d52a8a87dc5c2f34": "VoteNo",
+                "keyHash-73b6ee5b30e85b670804c4d3b5fd9dadccd46d9ce34c1c09873f2597": "VoteYes",
+                "keyHash-82465185d03f979831a26ff629ce971a6391597b70165972519233f1": "VoteNo",
+                "keyHash-85cf550b3c0cb19b134021b1cf81b086bdfc10bed9bdd00be5cc6d18": "VoteNo",
+                "keyHash-86c986afcf6a287eb706df965412e29f491bdb153dc531d210869a3f": "VoteNo",
+                "keyHash-8b75035882d4165bea8000c4d3f2c123ae33c1d92a751a78135a2402": "VoteNo",
+                "keyHash-8ba111ca19c78813d0fd9befe8febdce7361fbd770a246ea1c76c835": "Abstain",
+                "keyHash-9ee3b0ce6c5999fd817ef8670b6df8fdd7bf4d08a877e05becaaa540": "VoteNo",
+                "keyHash-a4a01438f9e942e8b9e97101ddabeea1f9f7785a05c670139dbfa4f2": "VoteNo",
+                "keyHash-a547ab8084bfee4868a67d1d9b0ae054ee17511eb28ad44d47c5d9cf": "VoteNo",
+                "keyHash-a83677e69e2a13a517361d613ffa436190378060da2bd0226846364f": "VoteNo",
+                "keyHash-a865b3916bd1d4eb06b2c650d928991db042f54f3658c0fb8dfe1af4": "VoteNo",
+                "keyHash-aff45cba7bc52fae256de95178476ea96ede79c58e4bdfdc46c582f6": "Abstain",
+                "keyHash-bf7cf9d35407a66f2744f1dac876bb2bee5e2bb7e04b6c606384d055": "VoteNo",
+                "keyHash-c50b9b9beeb0e1cfec57304c7d20746d59f2b3e71bbba847f48b79e2": "VoteNo",
+                "keyHash-ca647bef6fd06947e4cbb7368860a38528a6b3e41b60a7a59f849ac2": "VoteNo",
+                "keyHash-ccb1dbb55ed9bd1553b22cdbd79914e11a39a0c8c1c4770d62d7f135": "Abstain",
+                "keyHash-d33da6bc4ad754e5f7d44d7eb7ef655ea40f539dd7840c0a8760ad59": "VoteNo",
+                "keyHash-dc31e3ed20fcefa08e80a229bd8431864f59959985b7f9752e735e36": "VoteYes",
+                "keyHash-dd3573c0092bc1fad1301bece6e95c50a248264d743e21c2dcdb6266": "VoteNo",
+                "keyHash-ddb7316d7f4ff1d69084f2352e4613284381f17474fd133dfb4bb6ed": "VoteNo",
+                "keyHash-e110365006277fb6a38f3365738f9a973b9d555a269f53a788224be4": "VoteNo",
+                "keyHash-e5abf58a2f065d22fca6f86f021c80fd2ea52a45924659e9e0f49398": "VoteYes",
+                "keyHash-e6ce8801848a70f3ced317bcb5b8214339e89a9fde180e9d90919a2a": "VoteNo",
+                "keyHash-ea5c150980ee98f05f7f48e78dc4b5c1086f1aed897777df23397fad": "VoteNo",
+                "keyHash-ec20ef7cb489a04f466d21606de40e254971c5199ad1d37bf891262f": "Abstain",
+                "keyHash-fdec0e7b970169151874a50e0f22f41fe95dd722eb0e1a11364095e2": "VoteYes"
             },
-            "expiresAfter": 171,
+            "expiresAfter": 513,
             "proposalProcedure": {
                 "anchor": {
-                    "dataHash": "b0ea2fb2fb9a573b8d8b856f861053382e1ef0ca6ecb76cec39c53e94f2c5a29",
-                    "url": "https://raw.githubusercontent.com/logical-mechanism/dRep/main/scripts/data/actions/simple.action.json"
+                    "dataHash": "2f98f57c4149fdfed2b73cbd821226fe417ef5ed49d8f836a37b31edf14dea47",
+                    "url": "ipfs://QmWjcHsrq9kKHZZ7aPPFjqN6wLuxH9d8bcqssmrE7H4cvb"
                 },
                 "deposit": 100000000000,
                 "govAction": {
@@ -2759,13 +2768,37 @@
                 },
                 "returnAddr": {
                     "credential": {
-                        "keyHash": "40b3c98d3b5f5a7748829d612e9e1ccd5f429970abc9abfeae867af9"
+                        "keyHash": "45dee6ee5d7f631b6226d45f29da411c42fa7e816dc0948d31e0dba7"
                     },
-                    "network": "Testnet"
+                    "network": "Mainnet"
                 }
             },
-            "proposedIn": 165,
-            "stakePoolVotes": {}
+            "proposedIn": 507,
+            "stakePoolVotes": {
+                "00000110093effbf3ce788aebd3e7506b80322bd3995ad432e61fad5": "VoteNo",
+                "052100e65f3fa89fe1e2d3ae521446b2013b3c91ef5c7961e1b1a1ac": "VoteNo",
+                "08453273401b3ee2f380ec570f8c926d5f3bd3522337d03b566a6b61": "VoteNo",
+                "1b268f4cba3faa7e36d8a0cc4adca2096fb856119412ee7330f692b5": "VoteNo",
+                "21cb022b2557aec62f5a74f96350d398fa31186ba53240ad7d7466fd": "VoteNo",
+                "4690a6bcbfc9eedd4d8595c9d665cd9b8ebe3e6d82ebf0120d7bc7c5": "VoteNo",
+                "4aea697c45e39e37e5d842ec8cf6c01a714e88db33a1ba0565ab59af": "VoteNo",
+                "4d470d31f80c01d797996b43abdfe7339ae5b408fb31cc655a80ccd7": "VoteNo",
+                "538299a358e79a289c8de779f8cd09dd6a6bb286de717d1f744bb357": "VoteNo",
+                "5b5804135b07be6f3635a655ed1b68ddef1854523b45cd1840a6fc33": "VoteNo",
+                "7e7eb329d995759d2b9fdb85b8d0c9e3fa2e57c460641c8fc875e780": "VoteNo",
+                "8857ee40b59bbc752e8cab4e5808e204cf7c4ce338fd7b86f4db0cc6": "VoteNo",
+                "8b7a0faa3fb61ce93d1013db3e157c53c3c4060e4872d8d82fa66c6b": "VoteYes",
+                "903e554b27f6c66a2032bedc3d74fdf6b58b2f09a05e13b9af71807f": "VoteNo",
+                "90a9f94272aa45bb1eb27bb0e2fda43eb4d9bfd31010ab2c9c249896": "VoteNo",
+                "cdb10209d937fc1559c635e35b9147febde5307b4a7d276f868775cd": "Abstain",
+                "d61ab012cf4b0c24daf2447309638b25573f85b0a7e4ffdb60db9b22": "VoteNo",
+                "dacf06a23e4aaf119024e63deb79861ca175b24e7d44d97fb92b1a22": "VoteYes",
+                "e8e00995c7f3820fedf01e75a443c56e20f96ddcf9168b662ce2fdcd": "VoteNo",
+                "f1b265f1e545da9c6e003c5d703fb5a23283c646cd40b2d619671e7f": "VoteNo",
+                "f4ebee070198a0db41e46d5e59a7c582357013d15b907f65ad75d55e": "VoteNo",
+                "fb21d3e5ed7684742936778239a7bed2bcee1292964ddeb716d3a903": "VoteNo",
+                "fcbfb4a3c18f890de7a51f68603b18e654f8b432abdda17c53a0d586": "VoteNo"
+            }
         }
     ]
 }
